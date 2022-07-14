@@ -526,9 +526,9 @@
 
       _classCallCheck(this, Cover);
 
-      var fillColor = GetValue(config, 'color', 0x0);
-      var fillAlpha = GetValue(config, 'alpha', 0.8);
-      _this = _super.call(this, scene, fillColor, fillAlpha);
+      var fillColor = GetValue(config, "color", 0x0);
+      var fillAlpha = GetValue(config, "alpha", 0.8);
+      _this = _super.call(this, scene, fillColor, fillAlpha, config.autoResize);
       _this.touchEventStop = new TouchEventStop(_assertThisInitialized(_this), {
         hitAreaMode: 1
       });
