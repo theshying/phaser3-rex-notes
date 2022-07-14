@@ -162,6 +162,8 @@
     function FullWindowRectangle(scene, color, alpha) {
       var _this;
 
+      var autoResize = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+
       _classCallCheck(this, FullWindowRectangle);
 
       _this = _super.call(this, scene, 0, 0, 2, 2, color, 1);
@@ -172,6 +174,7 @@
 
       _this.boot();
 
+      _this._autoResize = autoResize;
       return _this;
     }
 
@@ -179,7 +182,7 @@
       key: "boot",
       value: function boot() {
         var scene = this.scene;
-        scene.sys.events.on('prerender', this.resize, this);
+        this.autoResize && scene.sys.events.on("prerender", this.resize, this);
       }
     }, {
       key: "destroy",
@@ -190,7 +193,7 @@
           return;
         }
 
-        this.scene.sys.events.off('prerender', this.resize, this);
+        this.autoResize && this.scene.sys.events.off("prerender", this.resize, this);
 
         _get(_getPrototypeOf(FullWindowRectangle.prototype), "destroy", this).call(this, fromScene);
       }
